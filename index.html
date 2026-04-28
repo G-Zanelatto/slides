@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZulCode — Apresentação</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #0a0b10;
+  --surface: #161821;
+  --surface2: #1c1f2e;
+  --border: #222630;
+  --blue: #2b6bf3;
+  --blue-glow: rgba(43,107,243,0.4);
+  --text: #e0e2eb;
+  --muted: #8b91a8;
+  --red: #ef4444;
+  --green: #22c55e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.slide {
+  width: 100%;
+  max-width: 1000px;
+  animation: slideIn 0.5s cubic-bezier(0.16,1,0.3,1);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.slide-full {
+  max-width: none;
+  padding: 0;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(32px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+h1 {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin: 0 0 8px 0;
+  line-height: 1.05;
+}
+h2 {
+  font-size: clamp(28px, 4.5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+  line-height: 1.15;
+}
+p {
+  font-size: clamp(17px, 2.2vw, 24px);
+  color: #b0b5c6;
+  line-height: 1.55;
+  max-width: 750px;
+  margin: 0 auto;
+}
+.logo-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 28px;
+  object-fit: cover;
+  margin-bottom: 24px;
+  box-shadow: 0 0 40px var(--blue-glow);
+}
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 14px; border-radius: 99px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--muted);
+}
+.tag.blue { background: rgba(43,107,243,0.12); border-color: rgba(43,107,243,0.3); color: #7aabff; }
+.tag.green{ background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.25); color: #86efac; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+}
+.card-sm { border-radius: 16px; padding: 20px 22px; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 700px) {
+  .grid2, .grid3 { grid-template-columns: 1fr; }
+}
+
+.stagger > * { animation: fadeUp 0.55s both; }
+.stagger > *:nth-child(1) { animation-delay: 0.06s; }
+.stagger > *:nth-child(2) { animation-delay: 0.14s; }
+.stagger > *:nth-child(3) { animation-delay: 0.22s; }
+.stagger > *:nth-child(4) { animation-delay: 0.3s; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 14px; text-align: left; }
+.bullet-list li { display: flex; align-items: flex-start; gap: 12px; font-size: clamp(15px,1.8vw,20px); color: #c5c8d8; line-height: 1.5; }
+.bullet-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+.bullet-dot.red  { background: var(--red); }
+.bullet-dot.blue { background: var(--blue); }
+
+.full-img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  display: block;
+  background: var(--bg);
+}
+
+/* ── TECH GRID ── */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.tech-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 18px;
+  text-align: center;
+  transition: all 0.25s;
+}
+.tech-card:hover {
+  transform: scale(1.04);
+  background: var(--surface2);
+  border-color: var(--blue);
+}
+.tech-card svg {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 10px;
+}
+.tech-card p {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ── SLIDE IMG ── */
+.slide-img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+}
+.link-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.link-img:hover {
+  border-color: var(--blue);
+  transform: scale(1.02);
+}
+
+.shortcut-hint {
+  display: block; text-align: center; font-size: 11px; color: var(--muted);
+  margin-top: 6px; letter-spacing: 0.04em; font-weight: 600;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 10px 24px;
+  flex-shrink: 0;
+  background: var(--bg);
+}
+.footer-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 6px;
+}
+.slide-num {
+  font-size: 14px; font-weight: 800; color: var(--text);
+  letter-spacing: 0.05em;
+}
+.nav-btns { display: flex; gap: 10px; }
+.btn-nav {
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 19px; font-weight: 700;
+  transition: all 0.2s;
+}
+.btn-nav:hover { border-color: var(--blue); background: var(--surface2); }
+.btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+.progress-track {
+  height: 6px; background: var(--surface);
+  border-radius: 99px; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%; background: var(--blue);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 0 8px var(--blue-glow);
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  40%      { transform: translateY(-14px); }
+  60%      { transform: translateY(-6px); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes pulse-z {
+  0%,100% { box-shadow: 0 0 14px var(--blue-glow); }
+  50%      { box-shadow: 0 0 28px rgba(43,107,243,0.6); }
+}
+.bounce-anim { animation: bounce 1.4s ease-in-out infinite; }
+.float-anim  { animation: float 3s ease-in-out infinite; }
+.pulse-z     { animation: pulse-z 2s ease-in-out infinite; }
+
+.macaw-img {
+  display: inline-block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(43,107,243,0.35));
+}
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="slide-wrap" class="slide"></div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <span class="slide-num" id="counter">1 / 12</span>
+    <div class="nav-btns">
+      <button class="btn-nav" id="prev"></button>
+      <button class="btn-nav" id="next"></button>
+    </div>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress" style="width:8.33%"></div>
+  </div>
+</footer>
+
+<script>
+/* ── IMAGENS ── */
+const LOGO = '<img src="zulkk.jpeg" class="logo-img pulse-z" alt="ZulCode" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-block\';" /><span style="display:none;font-size:80px;">Z</span>';
+const ARARA = (size) => `<img src="arara-azul.png" width="${size}" height="${size}" alt="Arara Azul" class="macaw-img" style="width:${size}px;height:${size}px;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block';" /><span style="display:none;">&nbsp;</span>`;
+
+const MACAW = ARARA(110);
+const MACAW_SMALL = ARARA(55);
+
+/* ── ICONES SVG INLINE (BRANCOS) ── */
+const ICON_NEXT = `<svg width="56" height="56" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="64" cy="64" r="60" fill="white"/><path d="M64 4C30.9 4 4 30.9 4 64s26.9 60 60 60 60-26.9 60-60S97.1 4 64 4zm0 108c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z" fill="black"/><path d="M88 44.5L70.5 64 88 83.5l-7.5 7.5-26-26 26-26L88 44.5z" fill="black"/></svg>`;
+const ICON_NEST = `<svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="14" fill="white"/><path d="M32 8L8 20v24L32 56l24-12V20L32 8zm0 6.8L52 24v16L32 48 12 40V24l20-9.2z" fill="#ea2845"/><path d="M32 28a8 8 0 100 16 8 8 0 000-16zm0 4a4 4 0 110 8 4 4 0 010-8z" fill="#ea2845"/></svg>`;
+const ICON_ELECTRON = `<svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="14" fill="white"/><path d="M32 8C18.7 8 8 18.7 8 32s10.7 24 24 24 24-10.7 24-24S45.3 8 32 8zm-6 12h4v8h-4v-8zm12 0h4v8h-4v-8zm-14 10h4v8h-4v-8zm16 0h4v8h-4v-8zm-14 10h4v8h-4v-8zm12 0h4v8h-4v-8z" fill="#47848f"/><circle cx="32" cy="32" r="6" fill="#47848f"/></svg>`;
+const ICON_CAPACITOR = `<svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="14" fill="white"/><path d="M32 4L8 18v28l24 14 24-14V18L32 4zm0 6.5L52 22v20L32 52 12 42V22l20-11.5z" fill="#119eff"/><rect x="26" y="22" width="12" height="20" rx="2" fill="#119eff"/></svg>`;
+
+/* ── SLIDES (12 SLIDES) ── */
+const slides = [
+
+/* 1 — CAPA */
+() => `
+<div class="slide">
+  <div style="display:flex;align-items:flex-end;justify-content:center;gap:30px;margin-bottom:20px;">
+    <div class="bounce-anim" style="animation-delay:0.1s">${MACAW}</div>
+    <div>${LOGO}</div>
+    <div class="bounce-anim" style="animation-delay:0.3s;transform:scaleX(-1)">${MACAW}</div>
+  </div>
+  <h1>ZulCode</h1>
+  <p style="color:#7aabff;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px;">Aprenda programacao de forma gamificada</p>
+  <p style="max-width:650px;">Plataforma mobile-first que transforma o ensino de tecnologia em uma experiencia viciante — um desafio por vez.</p>
+  <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:28px;">
+    <span class="tag blue">Thales G. / cl205166</span>
+    <span class="tag blue">Gabriel Z. / cl203322</span>
+    <span class="tag blue">Vitor M. / cl205068</span>
+    <span class="tag blue">Miguel R. / 205174</span>
+  </div>
+</div>`,
+
+/* 2 — O PROBLEMA */
+() => `
+<div class="slide stagger">
+  <h2>O Problema</h2>
+  <p style="margin-bottom:22px;">Muitos jovens tem dificuldade em aprender programacao. Conteudo complexo, desmotivacao e falta de pratica afastam iniciantes.</p>
+  <div class="card stagger" style="max-width:700px;margin:0 auto;text-align:left;">
+    <ul class="bullet-list">
+      <li><span class="bullet-dot red"></span><span><strong style="color:var(--text)">Conteudo complexo</strong> — iniciantes se sentem sobrecarregados com tanta informacao tecnica.</span></li>
+      <li><span class="bullet-dot red"></span><span><strong style="color:var(--text)">Falta de consistencia</strong> — sem metas claras, alunos abandonam nos primeiros meses.</span></li>
+      <li><span class="bullet-dot red"></span><span><strong style="color:var(--text)">Pouca pratica real</strong> — plataformas tradicionais focam em teoria, nao em exercicios.</span></li>
+      <li><span class="bullet-dot red"></span><span><strong style="color:var(--text)">Desmotivacao</strong> — sem feedback visual, o engajamento cai rapidamente.</span></li>
+    </ul>
+  </div>
+</div>`,
+
+/* 3 — NOSSA SOLUCAO */
+() => `
+<div class="slide stagger">
+  <h2>Nossa Solucao</h2>
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;padding:18px 24px;background:rgba(43,107,243,0.07);border:1px solid rgba(43,107,243,0.2);border-radius:18px;max-width:700px;margin-left:auto;margin-right:auto;">
+    <div class="float-anim">${MACAW_SMALL}</div>
+    <p style="text-align:left;color:#c5c8d8;">O <strong style="color:#7aabff">ZulCode</strong> transforma o aprendizado em desafios curtos, gamificados e faceis de acompanhar — inspirado no Duolingo.</p>
+  </div>
+  <div class="grid3 stagger" style="max-width:750px;margin:0 auto;">
+    <div class="card card-sm" style="text-align:center;">
+      <div style="width:48px;height:48px;background:var(--blue);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:22px;font-weight:800;box-shadow:0 0 10px var(--blue-glow);">G</div>
+      <h4 style="font-size:16px;font-weight:700;margin-bottom:4px;">Gamificacao</h4>
+      <p style="font-size:14px;color:var(--muted);">XP, conquistas e metas diarias.</p>
+    </div>
+    <div class="card card-sm" style="text-align:center;">
+      <div style="width:48px;height:48px;background:var(--blue);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:22px;font-weight:800;box-shadow:0 0 10px var(--blue-glow);">P</div>
+      <h4 style="font-size:16px;font-weight:700;margin-bottom:4px;">Progressao Visual</h4>
+      <p style="font-size:14px;color:var(--muted);">Roadmap com nos sequenciais.</p>
+    </div>
+    <div class="card card-sm" style="text-align:center;">
+      <div style="width:48px;height:48px;background:var(--blue);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:22px;font-weight:800;box-shadow:0 0 10px var(--blue-glow);">M</div>
+      <h4 style="font-size:16px;font-weight:700;margin-bottom:4px;">Microlearning</h4>
+      <p style="font-size:14px;color:var(--muted);">Um desafio por dia.</p>
+    </div>
+  </div>
+</div>`,
+
+/* 4 — COMO FUNCIONA */
+() => `
+<div class="slide stagger">
+  <h2>Como Funciona</h2>
+  <div class="card stagger" style="display:flex;flex-direction:column;gap:18px;max-width:650px;margin:0 auto;text-align:left;">
+    <div style="display:flex;align-items:flex-start;gap:14px;">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--blue);box-shadow:0 0 8px var(--blue-glow);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;">1</div>
+      <p style="font-size:16px;color:#c5c8d8;text-align:left;"><strong style="color:var(--text);">Login e Nivelamento</strong> — quiz inicial para definir o nivel do aluno.</p>
+    </div>
+    <div style="display:flex;align-items:flex-start;gap:14px;">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--blue);box-shadow:0 0 8px var(--blue-glow);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;">2</div>
+      <p style="font-size:16px;color:#c5c8d8;text-align:left;"><strong style="color:var(--text);">Desafio Diario</strong> — uma pergunta por dia com feedback imediato.</p>
+    </div>
+    <div style="display:flex;align-items:flex-start;gap:14px;">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--blue);box-shadow:0 0 8px var(--blue-glow);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;">3</div>
+      <p style="font-size:16px;color:#c5c8d8;text-align:left;"><strong style="color:var(--text);">Roadmap</strong> — avance pelos nos da trilha desbloqueando conteudos.</p>
+    </div>
+    <div style="display:flex;align-items:flex-start;gap:14px;">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--blue);box-shadow:0 0 8px var(--blue-glow);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;">4</div>
+      <p style="font-size:16px;color:#c5c8d8;text-align:left;"><strong style="color:var(--text);">Metas e XP</strong> — acumule pontos e acompanhe seu progresso.</p>
+    </div>
+  </div>
+</div>`,
+
+/* 5 — IMAGEM DE TELA INTEIRA */
+() => `
+<div class="slide slide-full" style="padding:0;">
+  <img src="fnochat.png" class="full-img" alt="Print do ZulCode" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+  <div style="display:none;width:100vw;height:100vh;background:var(--surface2);align-items:center;justify-content:center;font-size:24px;color:var(--muted);font-weight:700;">Print do App — Substitua a imagem</div>
+</div>`,
+
+/* 6 — TELA DE LOGIN */
+() => `
+<div class="slide stagger">
+  <h2>Tela de Login</h2>
+  <div class="grid2" style="align-items:start;max-width:850px;margin:0 auto;text-align:left;">
+    <div>
+      <p style="margin-bottom:16px;">Formulario com tabs alternando entre <strong style="color:var(--text)">Login</strong> e <strong style="color:var(--text)">Cadastro</strong>.</p>
+      <div class="card card-sm">
+        <h4 style="font-size:13px;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);">Funcionalidades</h4>
+        <ul class="bullet-list">
+          <li><span class="bullet-dot blue"></span><span>Input de email e senha</span></li>
+          <li><span class="bullet-dot blue"></span><span>Botao "Entrar" com glow azul</span></li>
+          <li><span class="bullet-dot blue"></span><span>Alternancia entre Login e Cadastro</span></li>
+        </ul>
+      </div>
+    </div>
+    <img src="g4.png" alt="Tela de Login" class="slide-img" />
+  </div>
+</div>`,
+
+/* 7 — TELA DE NIVELAMENTO */
+() => `
+<div class="slide stagger">
+  <h2>Tela de Nivelamento</h2>
+  <div class="grid2" style="align-items:start;max-width:850px;margin:0 auto;text-align:left;">
+    <div>
+      <p style="margin-bottom:16px;">Quiz adaptativo com <strong style="color:var(--text)">5 perguntas</strong> e progresso visual.</p>
+      <div class="card card-sm">
+        <h4 style="font-size:13px;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);">Funcionalidades</h4>
+        <ul class="bullet-list">
+          <li><span class="bullet-dot blue"></span><span>Barra de progresso (1/5)</span></li>
+          <li><span class="bullet-dot blue"></span><span>Badge de categoria</span></li>
+          <li><span class="bullet-dot blue"></span><span>3 opcoes de resposta</span></li>
+        </ul>
+      </div>
+    </div>
+    <img src="f4.png" alt="Tela de Nivelamento" class="slide-img" />
+  </div>
+</div>`,
+
+/* 8 — GAMIFICACAO */
+() => `
+<div class="slide stagger">
+  <h2>Gamificacao</h2>
+  <div class="grid3 stagger" style="max-width:750px;margin:0 auto 22px;">
+    <div class="card card-sm" style="text-align:center;">
+      <h4 style="font-size:16px;font-weight:700;margin-bottom:4px;">Metas Diarias</h4>
+      <p style="font-size:14px;color:var(--muted);">Resolver 3 desafios, ganhar XP, manter ofensiva.</p>
+    </div>
+    <div class="card card-sm" style="text-align:center;">
+      <h4 style="font-size:16px;font-weight:700;margin-bottom:4px;">XP e Niveis</h4>
+      <p style="font-size:14px;color:var(--muted);">Acumule pontos e suba de nivel.</p>
+    </div>
+    <div class="card card-sm" style="text-align:center;">
+      <h4 style="font-size:16px;font-weight:700;margin-bottom:4px;">Conquistas</h4>
+      <p style="font-size:14px;color:var(--muted);">Badges ao atingir marcos.</p>
+    </div>
+  </div>
+  <div class="card" style="max-width:500px;margin:0 auto;text-align:left;">
+    <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+      <span style="font-size:14px;color:var(--muted);">Resolver 3 desafios</span>
+      <span style="font-size:14px;font-weight:700;color:var(--blue);">2/3</span>
+    </div>
+    <div style="height:8px;background:var(--border);border-radius:99px;overflow:hidden;margin-bottom:14px;">
+      <div style="width:66%;height:100%;background:var(--blue);border-radius:99px;box-shadow:0 0 6px var(--blue-glow);"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+      <span style="font-size:14px;color:var(--muted);">Ganhar 95 XP</span>
+      <span style="font-size:14px;font-weight:700;color:var(--blue);">60/95</span>
+    </div>
+    <div style="height:8px;background:var(--border);border-radius:99px;overflow:hidden;">
+      <div style="width:63%;height:100%;background:var(--blue);border-radius:99px;box-shadow:0 0 6px var(--blue-glow);"></div>
+    </div>
+  </div>
+</div>`,
+
+/* 9 — PLATAFORMAS */
+() => `
+<div class="slide stagger">
+  <h2>Plataformas</h2>
+  <div class="grid3 stagger" style="max-width:750px;margin:0 auto 18px;">
+    <div class="card card-sm" style="text-align:center;">
+      <h4 style="font-size:16px;font-weight:700;margin-bottom:4px;">Desktop Web</h4>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:10px;">Layout responsivo para telas grandes.</p>
+      <span class="tag green">Funcionando</span>
+    </div>
+    <div class="card card-sm" style="text-align:center;">
+      <h4 style="font-size:16px;font-weight:700;margin-bottom:4px;">Mobile Web</h4>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:10px;">Experiencia mobile-first otimizada.</p>
+      <span class="tag green">Funcionando</span>
+    </div>
+    <div class="card card-sm" style="text-align:center;border-color:rgba(43,107,243,0.3);">
+      <h4 style="font-size:16px;font-weight:700;margin-bottom:4px;">App Nativo</h4>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:10px;">Em desenvolvimento.</p>
+      <span class="tag blue">Em Breve</span>
+    </div>
+  </div>
+  <div class="card" style="display:flex;align-items:center;gap:14px;max-width:600px;margin:0 auto;">
+    <span style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);white-space:nowrap;">Stack</span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="tag blue">Next.js 15</span>
+      <span class="tag blue">Tailwind CSS</span>
+      <span class="tag blue">TypeScript</span>
+    </div>
+  </div>
+</div>`,
+
+/* 10 — TECNOLOGIAS (ICONES SVG INLINE) */
+() => `
+<div class="slide stagger">
+  <h2>Tecnologias</h2>
+  <div class="tech-grid">
+    <div class="tech-card">
+      ${ICON_NEXT}
+      <p>Next.js</p>
+      <span style="font-size:12px;color:var(--muted);">Front-end</span>
+    </div>
+    <div class="tech-card">
+      ${ICON_NEST}
+      <p>NestJS</p>
+      <span style="font-size:12px;color:var(--muted);">Back-end</span>
+    </div>
+    <div class="tech-card">
+      ${ICON_ELECTRON}
+      <p>Electron</p>
+      <span style="font-size:12px;color:var(--muted);">Desktop</span>
+    </div>
+    <div class="tech-card">
+      ${ICON_CAPACITOR}
+      <p>Capacitor</p>
+      <span style="font-size:12px;color:var(--muted);">Mobile</span>
+    </div>
+  </div>
+</div>`,
+
+/* 11 — LINKS DO PROJETO */
+() => `
+<div class="slide stagger">
+  <h2>Links do Projeto</h2>
+  <p style="margin-bottom:24px;">Clique nas imagens abaixo para acessar as versoes do ZulCode:</p>
+  <div class="grid2" style="max-width:700px;margin:0 auto;">
+   
+      <a href="https://zul-code-landing.vercel.app" target="_blank" style="text-decoration:none;">
+        <img src="f3.png" alt="Landing Page" class="link-img" />
+        <span class="shortcut-hint">Landing Page</span>
+      </a>
+    </div>
+  </div>
+  <div class="card" style="margin-top:24px;text-align:center;background:rgba(43,107,243,0.06);border-color:rgba(43,107,243,0.2);">
+    <p style="font-size:15px;color:#c5c8d8;">O ZulCode esta apenas comecando. O objetivo e ser a <strong style="color:#7aabff">principal plataforma mobile-first</strong> de aprendizado de programacao do Brasil.</p>
+  </div>
+</div>`,
+
+/* 12 — PERGUNTAS / FINAL */
+() => `
+<div class="slide">
+  <div style="display:flex;align-items:flex-end;justify-content:center;gap:30px;margin-bottom:20px;">
+    <div class="bounce-anim" style="animation-delay:0.1s">${MACAW}</div>
+    <div>${LOGO}</div>
+    <div class="bounce-anim" style="animation-delay:0.25s;transform:scaleX(-1)">${MACAW}</div>
+  </div>
+  <h1>Obrigado!</h1>
+  <p>Perguntas?</p>
+  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px;">
+    <div class="card card-sm" style="display:inline-flex;align-items:center;gap:10px;padding:12px 22px;">
+      <span style="font-size:16px;font-weight:800;">Time</span>
+      <div style="text-align:left;">
+        <p style="font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Time</p>
+        <p style="font-size:13px;font-weight:700;">Thales / Gabriel / Vitor / Miguel</p>
+      </div>
+    </div>
+    <div class="card card-sm" style="display:inline-flex;align-items:center;gap:10px;padding:12px 22px;">
+      <span style="font-size:16px;font-weight:800;">Stack</span>
+      <div style="text-align:left;">
+        <p style="font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Stack</p>
+        <p style="font-size:13px;font-weight:700;">Next.js / NestJS / Electron / Capacitor</p>
+      </div>
+    </div>
+  </div>
+</div>`
+
+];
+
+/* ── ENGINE ── */
+let cur = 0;
+const wrap = document.getElementById('slide-wrap');
+const counter = document.getElementById('counter');
+const progress = document.getElementById('progress');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+
+function render() {
+  wrap.innerHTML = slides[cur]();
+  counter.textContent = `${cur+1} / ${slides.length}`;
+  progress.style.width = `${((cur+1)/slides.length)*100}%`;
+  prevBtn.disabled = cur === 0;
+  nextBtn.disabled = cur === slides.length - 1;
+  prevBtn.style.opacity = cur === 0 ? '0.3' : '1';
+}
+
+nextBtn.onclick = () => { if(cur < slides.length-1){ cur++; render(); }};
+prevBtn.onclick = () => { if(cur > 0){ cur--; render(); }};
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' || e.key === 'ArrowDown') nextBtn.click();
+  if(e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prevBtn.click();
+});
+
+let tx = 0;
+document.addEventListener('touchstart', e => { tx = e.changedTouches[0].screenX; });
+document.addEventListener('touchend', e => {
+  const d = tx - e.changedTouches[0].screenX;
+  if(Math.abs(d) > 50){ if(d > 0) nextBtn.click(); else prevBtn.click(); }
+});
+
+render();
+</script>
+</body>
+</html>
